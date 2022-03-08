@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>CV</title>
+        <title>Profile Me</title>
         <meta content="Admin Dashboard" name="description" />
         <meta content="ThemeDesign" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -57,13 +57,60 @@
                                         @csrf
                                         <div class="form-group row">
                                             <div class="col-12">
-                                                <input class="form-control" type="text"  placeholder="Full Name" name="name" value="{{ old('name') }}">
+                                                <input class="form-control" type="text"  placeholder="Firts Name" name="first_name" value="{{ old('first_name') }}">
                                             </div>
                                         </div>
-                                        @error('name')
+                                        @error('first_name')
                                             {{ Brian2694\Toastr\Facades\Toastr::error($message, 'Error') }}
                                         @enderror
-            
+
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <input class="form-control" type="text"  placeholder="Last Name" name="last_name" value="{{ old('last_name') }}">
+                                            </div>
+                                        </div>
+                                        @error('last_name')
+                                            {{ Brian2694\Toastr\Facades\Toastr::error($message, 'Error') }}
+                                        @enderror
+
+                                        <div class="form-group">
+                                            <select type="text" class="form-control " name="gender" required="required" value="{{ old('gender') }}">
+                                                <option value="" disabled selected>Select Gender</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select>
+                                        </div>
+                                        @error('gender')
+                                            {{ Brian2694\Toastr\Facades\Toastr::error($message, 'Error') }}
+                                        @enderror
+
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <input class="form-control" type="text"  placeholder="Birth Date" name="b_date" value="{{ old('b_date') }}" onfocus="(this.type='date')">
+                                            </div>
+                                        </div>
+                                        @error('b_date')
+                                            {{ Brian2694\Toastr\Facades\Toastr::error($message, 'Error') }}
+                                        @enderror
+
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <input class="form-control" type="text"  placeholder="Contact Number" name="phone" value="{{ old('phone') }}">
+                                            </div>
+                                        </div>
+                                        @error('phone')
+                                            {{ Brian2694\Toastr\Facades\Toastr::error($message, 'Error') }}
+                                        @enderror
+
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                                <input class="form-control" type="text"  placeholder="Address" name="address" value="{{ old('address') }}">
+                                            </div>
+                                        </div>
+                                        @error('address')
+                                            {{ Brian2694\Toastr\Facades\Toastr::error($message, 'Error') }}
+                                        @enderror
+
                                         <div class="form-group row">
                                             <div class="col-12">
                                                 <input class="form-control" type="email"  name="email" placeholder="Email Address" value="{{ old('email') }}">

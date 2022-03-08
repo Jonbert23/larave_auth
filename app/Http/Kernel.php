@@ -22,6 +22,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\PreventBackHistory::class,
+        \App\Http\Middleware\NotAuthCheck::class,
     ];
 
     /**
@@ -65,5 +66,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'pbh' => \App\Http\Middleware\PreventBackHistory::class,
+        'not_auth' =>  \App\Http\Middleware\NotAuthCheck::class,
     ];
 }

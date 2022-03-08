@@ -9,7 +9,7 @@
         <meta content="ThemeDesign" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <link rel="shortcut icon" href="{{ asset('backend/images/favicon.ico')}}">
+        <link rel="shortcut icon" href="{{ asset('image/logo.png')}}">
 
         <link href="{{ asset('backend/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
         <link href="{{ asset('backend/css/icons.css')}}" rel="stylesheet" type="text/css">
@@ -58,9 +58,16 @@
                             <li class="menu-title">Main</li>
 
                             <li>
-                                <a href="#" class="waves-effect">
+                                <a href="/dashboard" class="waves-effect">
                                     <i class="dripicons-home"></i>
                                     <span> Dashboard <span class="badge badge-success badge-pill float-right">3</span></span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/profesion" class="waves-effect">
+                                    <i class="dripicons-graduation"></i>
+                                    <span> Profesion</span>
                                 </a>
                             </li>
 
@@ -216,14 +223,12 @@
                                 <li class="list-inline-item dropdown notification-list nav-user">
                                     <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
                                     aria-haspopup="false" aria-expanded="false">
-                                        <img src="{{ asset('backend/images/users/avatar-6.jpg')}}" alt="user" class="rounded-circle">
-                                        <span class="d-none d-md-inline-block ml-1"> {{ Auth::user()->name }} <i class="mdi mdi-chevron-down"></i> </span>
+                                        <img src="{{ asset(Auth::user()->photo)}}" alt="user" class="rounded-circle">
+                                        <span class="d-none d-md-inline-block ml-1"> {{ Auth::user()->first_name."  ".Auth::user()->last_name}} <i class="mdi mdi-chevron-down"></i> </span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">
-                                        <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>
-                                        <a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted"></i> My Wallet</a>
-                                        <a class="dropdown-item" href="#"><span class="badge badge-success float-right m-t-5">5</span><i class="dripicons-gear text-muted"></i> Settings</a>
-                                        <a class="dropdown-item" href="#"><i class="dripicons-lock text-muted"></i> Lock screen</a>
+                                        <a class="dropdown-item" href="/my/profile/{{ Auth::user()->id }}"><i class="dripicons-user text-muted"></i> My Profile</a>
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#change_password_modal" ><i class="dripicons-wallet text-muted"></i> Change Password</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="/logout"><i class="dripicons-exit text-muted"></i> Logout</a>
                                     </div>
@@ -237,24 +242,6 @@
                                         <i class="mdi mdi-menu"></i>
                                     </button>
                                 </li>
-                                <li class="list-inline-item dropdown notification-list d-none d-sm-inline-block">
-                                    <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
-                                    aria-haspopup="false" aria-expanded="false">
-                                        Create New <i class="mdi mdi-plus"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-animated">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Separated link</a>
-                                    </div>
-                                </li>
-                                <li class="list-inline-item notification-list d-none d-sm-inline-block">
-                                    <a href="#" class="nav-link waves-effect">
-                                        Activity
-                                    </a>
-                                </li>
 
                             </ul>
 
@@ -267,7 +254,7 @@
                     <div class="page-content-wrapper ">
 
                         <div class="container-fluid">
-                        <div class="row pt-4 pb-2">
+                        <div class="row pt-4">
                             <div class="col-md-12">
                                 <h4 class="page-title m-0">@yield('header')</h4>
                                 <hr>
@@ -275,6 +262,7 @@
                         </div>
 
                           @yield('content')
+                          @include('user.change_password_modal')
 
                         </div><!-- container fluid -->
 

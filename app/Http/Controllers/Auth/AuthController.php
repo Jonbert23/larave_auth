@@ -29,23 +29,40 @@ class AuthController extends Controller
     public function store_user(Request $request)
     {
         $validateDate = $request->validate([
-            'name' => ['required'],
+            'first_name' => ['required'],
+            'last_name' => ['required'],
+            'gender' => ['required'],
+            'b_date' => ['required'],
+            'phone' => ['required', 'min:11'],
+            'address' => ['required'],
             'email' => ['required', 'unique:users'],
             'password' => ['required', 'min:5'],
             'confirm_password' => ['required']
         ]);
         
         $password = $request->password;
-        $email = $request->email;
         $confirm_password = $request->confirm_password;
+        $male_photo = "image/user/male.jpg";
+        $female_photo = "image/user/female.png";
 
         if($password == $confirm_password)
         {
-           User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-            ]);
+            $user = New User;
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
+            $user->gender = $request->gender;
+            $user->b_date = $request->b_date;
+            $user->phone = $request->phone;
+            $user->address = $request->address;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            if($request->gender == "Male"){
+                $user->photo = $male_photo;
+            }
+            else{
+                $user->photo = $female_photo;
+            }
+            $user->save();
 
             $credentials = $request->only('email', 'password');
             if (Auth::attempt($credentials)) 
@@ -68,17 +85,21 @@ class AuthController extends Controller
             'password' => ['required', 'string']
         ]);
 
-        $credentials = $request->only('email','password');
+        //$credentials = $request->only('email','password');
+        $password = $request->password;
+        $email = $request->email;
 
-        if(Auth::attempt($credentials))
+        if (Auth::attempt(['email' => $email, 'password' => $password]))
         {
             Toastr::success('You have loged in', 'Success');
             return redirect('/dashboard');
+            //echo $request->password;
         }
         else
         {
             Toastr::error('Your credentials does not exist', 'Error');
             return redirect()->back();
+            //echo $request->password;
         }
     }
 
