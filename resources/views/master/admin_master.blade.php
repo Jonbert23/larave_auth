@@ -65,35 +65,35 @@
                             </li>
 
                             <li>
-                                <a href="/profesion" class="waves-effect">
+                                <a href="/profesion/{{ Auth::user()->id }}" class="waves-effect">
                                     <i class="dripicons-graduation"></i>
                                     <span> Profesion</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="#" class="waves-effect">
+                                <a href="/education" class="waves-effect">
                                     <i class="dripicons-graduation"></i>
                                     <span> Education</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="#" class="waves-effect">
+                                <a href="/experience" class="waves-effect">
                                     <i class="dripicons-folder"></i>
                                     <span> Experience</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="#" class="waves-effect">
+                                <a href="/skill" class="waves-effect">
                                     <i class="dripicons-suitcase"></i>
                                     <span> Skills </span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="#" class="waves-effect">
+                                <a href="/award" class="waves-effect">
                                     <i class="dripicons-checkmark"></i>
                                     <span> Awards </span>
                                 </a>

@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Profesion;
+use App\Models\Education;
+use App\Models\Experience;
 
 class User extends Authenticatable
 {
@@ -46,5 +48,15 @@ class User extends Authenticatable
     public function profesion()
     {
         return $this->hasMany(Profesion::class);
+    }
+
+    public function education()
+    {
+        return $this->hasMany(Education::class);
+    }
+
+    public function experience()
+    {
+        return $this->hasMany(Experience::class);
     }
 }
